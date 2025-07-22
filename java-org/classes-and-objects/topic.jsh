@@ -4,48 +4,71 @@ import java.util.ArrayList;
 
 // Exercise 1: Basic Class Creation
 // Create a Person class with name and age fields
-class Person {
-    // Your fields here
+class Person { 
+    String name;
+    int  age;
     
-    // Your constructor here
+    public Person(String name, int age) {
+        this.name = name; 
+        this.age = age;
+    }
     
-    // Your introduce() method here
-    
+    public String introduce() {
+        return "Hello, I'm " + name + " and I'm " + age + " years old.";
+    }
+
 }
 
 // Exercise 2: Class with Methods
 // Create a BankAccount class with account operations
 class BankAccount {
-    // Your fields here
+    String accountNumber;
+    double balance;
     
-    // Your constructor here
+    public BankAccount(String accountNumber, double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = 0.0;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
     
-    // Your deposit method here
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+        } else {
+            System.out.println("insufficient funds");
+        }
+
+    }
     
-    // Your withdraw method here
+    public double getBalance() {
+        return balance;
+    }
     
-    // Your getBalance method here
-    
-    // Your getAccountInfo method here
+    public String getAccountInfo() {
+        return "Hello, " + accountNumber + " your balance is " + balance + " .";
+    }
     
 }
 
 // Exercise 3: Object Creation and Usage
 // Create and return a Person object
 public Person createPerson(String name, int age) {
-    // Your code here
-    
+    return new Person(name ,age);    
 }
 
 // Create and return a BankAccount object
 public BankAccount createBankAccount(String accountNumber) {
-    // Your code here
+    return new BankAccount(accountNumber,0.0);
     
 }
 
 // Demonstrate creating and using a Person object
 public void demonstratePersonUsage() {
-    // Your code here
+    Person person = new Person(name, age);
+    System.out.println(Person.introduce());
     
 }
 
@@ -64,7 +87,7 @@ class Car {
 
 // Compare two cars and return which is older
 public Car compareCars(Car car1, Car car2) {
-    // Your code here
+    return null;
     
 }
 
@@ -126,7 +149,7 @@ class Library {
 }
 
 // Test your classes here - uncomment and modify as needed
-/*
+
 System.out.println("Testing Person class:");
 Person person1 = createPerson("Alice", 30);
 Person person2 = new Person("Bob", 25);
@@ -192,4 +215,4 @@ System.out.println("After checking out 1984: " + library.getAvailableBooks());
 
 library.returnBook("1984");
 System.out.println("After returning 1984: " + library.getAvailableBooks());
-*/
+

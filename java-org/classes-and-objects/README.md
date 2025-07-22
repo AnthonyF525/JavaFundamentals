@@ -69,8 +69,8 @@ After completing each exercise, test your classes and methods:
 
 ```java
 // Example tests
-Person person = createPerson("Alice", 30);
-System.out.println(person.introduce());
+Person Person = createPerson("Alice", 30);
+    return (person.introduce());
 
 BankAccount account = createBankAccount("123456");
 account.deposit(100.0);

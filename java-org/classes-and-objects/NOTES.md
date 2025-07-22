@@ -36,6 +36,7 @@ class Person {
     public Person(String name, int age) {
         this.name = name;  // 'this' refers to the current object
         this.age = age;
+        return null;
     }
     
     // Methods - what a Person object can do
