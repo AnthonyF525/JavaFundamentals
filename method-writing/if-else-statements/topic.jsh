@@ -4,40 +4,65 @@
 // Exercise 1: Basic If Statement
 // Write a method that checks if someone is an adult (18 or older)
 public String checkAge(int age) {
-    // Your code here
-    
+    if (age >= 18) {
+        return "Adult";
+    } else {
+        return "Minor";
+    }
 }
 
 // Exercise 2: Grade Classification  
 // Classify a numeric grade into a category
 public String classifyGrade(int score) {
-    // Your code here
+    if (score >= 90) {
+        return "Excellent";
+    } else if (score >= 80 && score <= 89) {
+        return "Good";
+    } else if (score >= 70 && score <= 79) {
+        return "Average";
+    } else if (score <= 70); {
+        return "Below Average";
+    }
     
 }
 
 // Exercise 3: Number Sign
 // Determine if a number is positive, negative, or zero
 public String getSign(int number) {
-    // Your code here
+    if (number > 0) {
+        return "Positive";
+    } else if (number == 0) {
+        return "Zero";
+    } else {
+        return "Negative";
+    }
     
 }
 
 // Exercise 4: Temperature Check
 // Classify temperature as hot, warm, or cold
 public String checkTemperature(double temp) {
-    // Your code here
-    
+    if (temp > 80) {
+        return "Hot";
+    } else if (temp >= 60 && temp <= 80) {
+        return "Warm";
+    } else {
+        return "Cold";
+    }
 }
 
 // Exercise 5: Login Validation
 // Check if username and password are valid (not null and not empty)
 public boolean validateLogin(String username, String password) {
-    // Your code here
-    
+    if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
+        return true;
+    } else {
+        return false;
+    }  
 }
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing checkAge:");
 System.out.println(checkAge(17));  // Should print "Minor"
 System.out.println(checkAge(18));  // Should print "Adult"
@@ -64,4 +89,4 @@ System.out.println(validateLogin("user", "pass"));     // Should print true
 System.out.println(validateLogin("", "pass"));         // Should print false
 System.out.println(validateLogin("user", ""));         // Should print false
 System.out.println(validateLogin(null, "pass"));       // Should print false
-*/
+
