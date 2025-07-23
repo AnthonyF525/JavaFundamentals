@@ -4,28 +4,26 @@
 // Exercise 1: Basic Boolean Methods
 // Return true if person is 18 or older
 public boolean isAdult(int age) {
-    // Your code here
-    
+    return age >= 18;
 }
 
 // Exercise 2: Number Range Checker
 // Return true if number is between min and max (inclusive)
 public boolean isInRange(int number, int min, int max) {
-    // Your code here
+    return number >= min && number <= max;
     
 }
 
 // Exercise 3: String Validation
 // Return true if email contains both "@" and "." characters
 public boolean isValidEmail(String email) {
-    // Your code here
-    
+    return (email.contains("@") && email.contains("."));
 }
 
 // Exercise 4: Even/Odd Checker
 // Return true if number is even, false if odd
 public boolean isEven(int number) {
-    // Your code here
+    return number % 2 == 0;
     
 }
 
@@ -33,29 +31,35 @@ public boolean isEven(int number) {
 // Return true if year is a leap year
 // Leap year: divisible by 4, but not by 100, unless also divisible by 400
 public boolean isLeapYear(int year) {
-    // Your code here
-    
+   return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0); 
 }
 
 // Exercise 6: Password Strength Validator
 // Return true if password is at least 8 chars AND has at least one uppercase
 public boolean isStrongPassword(String password) {
-    // Your code here
-    
+    if (password.length() < 8) return false;
+    for (char c: password.toCharArray()) {
+        if (Character.isUpperCase(c)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 // Exercise 7: Triangle Validator
 // Return true if three sides can form a valid triangle
 // Rule: sum of any two sides must be greater than the third side
 public boolean isValidTriangle(int a, int b, int c) {
-    // Your code here
+    return (a + b > c) && (a > b + c) && (a + c > b);
     
 }
 
 // Exercise 8: Boolean Object Practice
 // Return true if both Boolean objects have the same value (handle nulls)
 public boolean compareBoolean(Boolean b1, Boolean b2) {
-    // Your code here
+    if (b1 == b2) return true;
+    if (b1 == null || b2 == null) return false;
+    return b1.equals(b2);
     
 }
 
@@ -63,27 +67,27 @@ public boolean compareBoolean(Boolean b1, Boolean b2) {
 // Simulate basic logic gates
 
 public boolean andGate(boolean a, boolean b) {
-    // Your code here
+    return a && b;
     
 }
 
 public boolean orGate(boolean a, boolean b) {
-    // Your code here
+    return a || b;
     
 }
 
 public boolean notGate(boolean a) {
-    // Your code here
+    return !a == a;
     
 }
 
 public boolean xorGate(boolean a, boolean b) {
-    // Your code here (true if exactly one input is true)
+    return !a || b;
     
 }
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing isAdult:");
 System.out.println("Age 17: " + isAdult(17));      // Should print false
 System.out.println("Age 18: " + isAdult(18));      // Should print true
@@ -132,4 +136,4 @@ System.out.println("OR true,false: " + orGate(true, false));      // Should prin
 System.out.println("NOT true: " + notGate(true));                 // Should print false
 System.out.println("XOR true,false: " + xorGate(true, false));    // Should print true
 System.out.println("XOR true,true: " + xorGate(true, true));      // Should print false
-*/
+
