@@ -4,22 +4,34 @@
 // Exercise 1: Countdown
 // Print numbers from start down to 1, then print "Blast off!"
 public void countdown(int start) {
-    // Your code here
-    
+    while(start > 0) {
+        System.out.println("Count is: " + start);
+        start--;
+    }
+    System.out.print("Blast off!");
 }
 
 // Exercise 2: Sum Calculator
 // Calculate the sum of all integers from 1 to n
 public int sumUpTo(int n) {
-    // Your code here
-    
+    int sum = 0;
+    int i = 1;
+    while (i <= n) {
+        sum = sum + i;  
+        i++;
+    }
+    return sum;
 }
 
 // Exercise 3: Number Guessing Helper
 // Count how many steps it takes to get from start to target (adding 1 each time)
 public int findNumber(int target, int start) {
-    // Your code here
-    
+    int step = 0;
+    while (start < target) {
+        start++;
+        step++;
+    }
+    return step;
 }
 
 // Exercise 4: Digit Counter
@@ -51,7 +63,7 @@ public int power(int base, int exponent) {
 }
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing countdown:");
 countdown(5);
 
@@ -63,7 +75,7 @@ System.out.println("Sum 1 to 1: " + sumUpTo(1));    // Should print 1
 System.out.println("\nTesting findNumber:");
 System.out.println("Steps from 5 to 10: " + findNumber(10, 5));  // Should print 5
 System.out.println("Steps from 1 to 1: " + findNumber(1, 1));    // Should print 0
-
+/*
 System.out.println("\nTesting countDigits:");
 System.out.println("Digits in 12345: " + countDigits(12345));    // Should print 5
 System.out.println("Digits in 7: " + countDigits(7));            // Should print 1
