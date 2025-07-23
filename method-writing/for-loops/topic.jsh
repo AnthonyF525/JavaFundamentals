@@ -34,43 +34,63 @@ public void multiplicationTable(int number) {
 // Exercise 4: Even Numbers Only
 // Print all even numbers from 2 up to the limit (inclusive)
 public void printEvenNumbers(int limit) {
-    // Your code here
+    for (int i = 2; i <= limit; i += 2) {
+    System.out.println(i);
+}
     
 }
 
 // Exercise 5: String Repeater
 // Return a string with the given text repeated the specified number of times
 public String repeatString(String text, int times) {
-    // Your code here
-    
+    StringBuilder result = new StringBuilder();
+    for (int i =0; i < times; i++) {
+        result.append(text);
+    }
+    return result.toString();
 }
 
 // Exercise 6: Factorial Calculator
 // Calculate n! (n factorial) using a for loop
 public long calculateFactorial(int n) {
-    // Your code here
-    
+    long result = 1;
+    for (int i = 2; i <= n;i++) {
+        result *= i;
+    }
+    return result;
 }
 
 // Exercise 7: Array Sum
 // Calculate and return the sum of all numbers in an array
 public int sumArray(int[] numbers) {
-    // Your code here
-    
+    int sum = 0;
+    for (int num : numbers) {
+        sum += num;
+    }
+    return sum;
 }
 
 // Exercise 8: Character Counter
 // Count how many times a specific character appears in a string
 public int countCharacter(String text, char target) {
-    // Your code here
-    
+    int count = 0;
+    for (int i = 0; i < text.length(); i++) {
+        if (text.charAt(i) == target) {
+            count++;
+        }
+    }
+    return count;
 }
 
 // Exercise 9: Pattern Printer
 // Print a triangle pattern of stars
 public void printStars(int rows) {
-    // Your code here
-    
+    for (int i = 1; i <= rows; i++) {
+        for (int j = 1; j <= i; j++) {
+            System.out.print("*");
+        }
+        System.out.println();
+    }
 }
 
 // Test your methods here - uncomment and modify as needed
@@ -86,7 +106,7 @@ System.out.println("Sum 1 to 1: " + calculateSum(1));    // Should print 1
 
 System.out.println("\nTesting multiplicationTable:");
 multiplicationTable(3);
-/*
+
 System.out.println("\nTesting printEvenNumbers:");
 printEvenNumbers(10);
 printEvenNumbers(15);
@@ -116,4 +136,4 @@ System.out.println("\nTesting printStars:");
 printStars(4);
 System.out.println();
 printStars(2);
-*/
+

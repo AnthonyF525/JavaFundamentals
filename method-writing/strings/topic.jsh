@@ -4,60 +4,65 @@
 // Exercise 1: String Basics
 // Return the length of a string (handle null strings)
 public int getStringLength(String text) {
-    // Your code here
-    
+    if (text == null) {
+        return 0;
+    }
+    return text.length();
 }
 
 // Return true if string is null or empty
 public boolean isStringEmpty(String text) {
-    // Your code here
+    return text == null || text.isEmpty();
     
 }
 
 // Exercise 2: String Comparison
 // Safely compare two strings for equality (handle nulls)
 public boolean areStringsEqual(String str1, String str2) {
-    // Your code here
-    
+    if (str1 == null && str2 == null) return true;
+    if (str1 == null || str2 == null) return false;
+    return str1.equals(str2); 
 }
 
 // Compare strings ignoring case differences
 public boolean compareStringsIgnoreCase(String str1, String str2) {
-    // Your code here
-    
+    if (str1 == null && str2 == null) return true;
+    if (str1 == null || str2 == null) return false;
+    return str1.equalsIgnoreCase(str2);
 }
 
 // Exercise 3: String Search and Contains
 // Return true if text contains the search string
 public boolean containsSubstring(String text, String search) {
-    // Your code here
+    if (text == null || search == null) return false;
+    return text.contains(search);
     
 }
 
 // Return index of first occurrence of search in text (-1 if not found)
 public int findFirstPosition(String text, String search) {
-    // Your code here
+    if (text == null || search == null) return -1;
+    return text.indexOf(search);
     
 }
 
 // Exercise 4: String Extraction
 // Return the first character of a string (handle empty strings)
 public char getFirstCharacter(String text) {
-    // Your code here
-    // Return a space ' ' for empty/null strings
-    
+    if (text == null || text.isEmpty()) return ' ';
+    return text.charAt(0);
 }
 
 // Return the last character of a string
 public char getLastCharacter(String text) {
-    // Your code here
-    // Return a space ' ' for empty/null strings
-    
+    if (text == null || text.isEmpty()) return ' ';   
+    return text.charAt(text.length()-1);
 }
 
 // Return substring from start to end index
 public String getSubstring(String text, int start, int end) {
-    // Your code here
+    if (text == null || text.isEmpty()) return "";
+    return text.substring(start, end);
     
 }
 
@@ -119,7 +124,7 @@ public boolean isPalindrome(String text) {
 }
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing String Basics:");
 System.out.println("Length of 'Hello': " + getStringLength("Hello"));      // Should print 5
 System.out.println("Length of null: " + getStringLength(null));             // Should print 0
@@ -141,7 +146,7 @@ System.out.println("\nTesting String Extraction:");
 System.out.println("First char of 'Java': " + getFirstCharacter("Java"));    // Should print 'J'
 System.out.println("Last char of 'Java': " + getLastCharacter("Java"));      // Should print 'a'
 System.out.println("Substring of 'Hello' (1,4): " + getSubstring("Hello", 1, 4)); // Should print "ell"
-
+/*
 System.out.println("\nTesting String Modification:");
 System.out.println("'hello' uppercase: " + makeUpperCase("hello"));          // Should print "HELLO"
 System.out.println("'WORLD' lowercase: " + makeLowerCase("WORLD"));          // Should print "world"
