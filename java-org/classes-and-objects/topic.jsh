@@ -40,7 +40,6 @@ class BankAccount {
         } else {
             System.out.println("insufficient funds");
         }
-
     }
     
     public double getBalance() {
@@ -75,58 +74,115 @@ public void demonstratePersonUsage() {
 // Exercise 4: Working with Multiple Objects
 // Create a Car class
 class Car {
-    // Your fields here
+    String brand;
+    String model;
+    int year;
     
-    // Your constructor here
+    public Car(String brand, String model, int year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
     
-    // Your getCarInfo method here
+    public String getCarInfo() {
+        return " Car brand: " + brand + " , Model: " + model + " ,Year made: " + year + ".";
+    }
     
-    // Your isClassic method here (car is classic if > 25 years old)
-    
+    public boolean isClassic() {
+        int currentYear = java.time.Year.now().getValue();
+        return (currentYear - year) > 25;
+    }    
 }
 
 // Compare two cars and return which is older
 public Car compareCars(Car car1, Car car2) {
-    return null;
+    if (car1.year < car2.year) {
+        return car1;
+    } else if (car2.year < car1.year) {
+        return car2;
+    } else {
+        return null;
+    }
     
 }
 
 // Exercise 5: Object State and Behavior
 // Create a Counter class that can increment/decrement
 class Counter {
-    // Your fields here
+    int count;
+
+    public Counter() {
+        this.count = 0;
+    }
     
-    // Your constructor here
+    public Counter(int count) {
+        this.count = count;
+    }
     
-    // Your increment method here
+    public int increment() {
+        count++;
+        return count;
+    }
     
-    // Your decrement method here
+    public int decrement() {
+        count--;
+        return count;
+    }
     
-    // Your reset method here
+    public void reset() {
+        count = 0;
+    }
     
-    // Your getCount method here
-    
+    public int getCount() {
+        return count;
+    }   
 }
 
 // Exercise 6: Class with Validation
 // Create a Student class with input validation
 class Student {
-    // Your fields here
+    String name;
+    int grade;
+    double gpa;
     
-    // Your constructor with validation here
+    public Student( String name, int grade, double gpa) {
+        this.name = name;
+        if (grade >= 1 && grade <= 12) {
+            this.grade = grade;
+        } else {
+            System.out.println("Grade must be between 1 and 12");
+            this.grade = 1;
+        }
+        if (gpa >= 0.0 && gpa <= 4.0) {
+            this.gpa = gpa;
+        } else {
+            System.out.println("GPA must be between 0.0 and 4.0");
+            this.gpa = 0.0;
+        }
+    }
     
-    // Your isHonorStudent method here
+    public boolean isHonorStudent() {
+        return gpa >= 3.5;
+    }
     
-    // Your getStudentInfo method here
+    public String getStudentInfo() {
+        return "Student record: Name: " + name + " Grade: " + grade + " GPA: " + gpa + ".";
+    }
     
 }
 
 // Exercise 7: Object Interaction
 // Create a Book class
 class Book {
-    // Your fields here
+    String title;
+    String author;
+    boolean isCheckedOut;
     
-    // Your constructor here
+    public Book(String title, String author, boolean isCheckedOut) {
+        this.title = title;
+        this.author = author;
+        this.isCheckedOut = isCheckedOut;
+    }
     
     // Add any helpful methods here
     
@@ -134,17 +190,54 @@ class Book {
 
 // Create a Library class that manages books
 class Library {
-    // Your fields here
+    ArrayList<Book> books;
+    String title;
+
+    public Library() {
+    this.title = "Untitled Library";
+    this.books = new ArrayList<>();
+}
     
-    // Your constructor here
+    public Library(String title) {
+        this.title = title;
+        this.books = new ArrayList<>();
+    }
     
-    // Your addBook method here
+    public void addBook(Book book) {
+        books.add(book);
+    }
     
-    // Your checkOutBook method here
+    public void checkOutBook(String title) {
+        for (Book book : books) {
+            if (book.title.equals(title) && !book.isCheckedOut) {
+                book.isCheckedOut = true;
+                break;
+            }
+        }
+    }
     
-    // Your returnBook method here
+    public void returnBook(String title) {
+        for (Book book : books) {
+            if (book.title.equals(title) && book.isCheckedOut) {
+                book.isCheckedOut = false;
+                break;
+            }
+        }
+
+    }
     
-    // Your getAvailableBooks method here
+    public String getAvailableBooks() {
+        StringBuilder available = new StringBuilder();
+        for (Book book : books) {
+            if (!book.isCheckedOut) {
+                if (available.length() > 0) {
+                    available.append(", ");
+                }
+                available.append(book.title);
+            }
+        }
+        return available.toString();
+    }
     
 }
 
