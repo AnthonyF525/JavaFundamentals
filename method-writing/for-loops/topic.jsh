@@ -4,14 +4,18 @@
 // Exercise 1: Number Sequence
 // Print all numbers from start to end (inclusive)
 public void printNumbers(int start, int end) {
-    // Your code here
-    
+    for(int i = start; i < end; i++) {
+        System.out.println(i);
+    }  
 }
 
 // Exercise 2: Sum Calculator
 // Calculate the sum of all integers from 1 to n
 public int calculateSum(int n) {
-    // Your code here
+    int sum = 0;
+    for(int i = 1; i < n; i++) {
+        return sum;
+    }
     
 }
 
@@ -65,7 +69,7 @@ public void printStars(int rows) {
 }
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing printNumbers:");
 printNumbers(1, 5);
 printNumbers(3, 7);
@@ -74,7 +78,7 @@ System.out.println("\nTesting calculateSum:");
 System.out.println("Sum 1 to 4: " + calculateSum(4));    // Should print 10
 System.out.println("Sum 1 to 5: " + calculateSum(5));    // Should print 15
 System.out.println("Sum 1 to 1: " + calculateSum(1));    // Should print 1
-
+/*
 System.out.println("\nTesting multiplicationTable:");
 multiplicationTable(3);
 
