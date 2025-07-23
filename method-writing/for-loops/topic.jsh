@@ -13,16 +13,21 @@ public void printNumbers(int start, int end) {
 // Calculate the sum of all integers from 1 to n
 public int calculateSum(int n) {
     int sum = 0;
-    for(int i = 1; i < n; i++) {
-        return sum;
+    for(int i = 1; i <= n; i++) {
+        sum = sum +i;
     }
-    
+    return sum;
 }
 
 // Exercise 3: Multiplication Table
 // Print the multiplication table for the given number (1 through 10)
 public void multiplicationTable(int number) {
-    // Your code here
+    for (int i = 1; i <= number; i++) {
+    for (int j = 1; j <= number; j++) {
+        System.out.print((i * j) + "\t");
+    }
+    System.out.println();
+}
     
 }
 
@@ -78,10 +83,10 @@ System.out.println("\nTesting calculateSum:");
 System.out.println("Sum 1 to 4: " + calculateSum(4));    // Should print 10
 System.out.println("Sum 1 to 5: " + calculateSum(5));    // Should print 15
 System.out.println("Sum 1 to 1: " + calculateSum(1));    // Should print 1
-/*
+
 System.out.println("\nTesting multiplicationTable:");
 multiplicationTable(3);
-
+/*
 System.out.println("\nTesting printEvenNumbers:");
 printEvenNumbers(10);
 printEvenNumbers(15);
