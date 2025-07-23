@@ -37,29 +37,53 @@ public int findNumber(int target, int start) {
 // Exercise 4: Digit Counter
 // Count how many digits are in a positive integer
 public int countDigits(int number) {
-    // Your code here
-    
+    if (number == 0) return 1;
+    int digits = 0;
+    while (number != 0) {
+        number /= 10;
+        digits++;
+    } 
+    return digits;
 }
 
 // Exercise 5: Password Strength Checker
 // Use a while loop to count characters and determine password strength
 public String checkPasswordStrength(String password) {
-    // Your code here
-    
+    int count = 0;
+    while (count < password.length()) {
+        count++;
+    }
+    if (count < 4) {
+        return "Weak";
+    } else if (count < 5 && count >7) {
+        return "Medium";
+    } else {
+        return "Strong";
+    }
 }
 
 // Exercise 6: Factorial Calculator
 // Calculate n! (n factorial) using a while loop
 public long factorial(int n) {
-    // Your code here
-    
+    if (n < 0) return -1;
+    long result = 1;
+    while (n >1) {
+        result *= n;
+        n--;
+    }
+    return result;
 }
 
 // Exercise 7: Power Calculator
 // Calculate base^exponent using a while loop (don't use Math.pow)
 public int power(int base, int exponent) {
-    // Your code here
-    
+    int result = 1; 
+    int count = 0;
+    while (count < exponent) {
+        result *= base;
+        count++;
+    }
+    return result;
 }
 
 // Test your methods here - uncomment and modify as needed
@@ -75,7 +99,7 @@ System.out.println("Sum 1 to 1: " + sumUpTo(1));    // Should print 1
 System.out.println("\nTesting findNumber:");
 System.out.println("Steps from 5 to 10: " + findNumber(10, 5));  // Should print 5
 System.out.println("Steps from 1 to 1: " + findNumber(1, 1));    // Should print 0
-/*
+
 System.out.println("\nTesting countDigits:");
 System.out.println("Digits in 12345: " + countDigits(12345));    // Should print 5
 System.out.println("Digits in 7: " + countDigits(7));            // Should print 1
@@ -95,4 +119,4 @@ System.out.println("\nTesting power:");
 System.out.println("2^3: " + power(2, 3));    // Should print 8
 System.out.println("5^2: " + power(5, 2));    // Should print 25
 System.out.println("3^0: " + power(3, 0));    // Should print 1
-*/
+
