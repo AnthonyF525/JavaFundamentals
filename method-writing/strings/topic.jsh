@@ -69,57 +69,86 @@ public String getSubstring(String text, int start, int end) {
 // Exercise 5: String Modification
 // Convert string to uppercase (handle null)
 public String makeUpperCase(String text) {
-    // Your code here
+    if (text == null || text.isEmpty()) return "";
+    return text.toUpperCase(); 
     
 }
 
 // Convert string to lowercase (handle null)
 public String makeLowerCase(String text) {
-    // Your code here
+    if (text == null || text.isEmpty()) return "";
+    return text.toLowerCase();
     
 }
 
 // Remove leading and trailing spaces
 public String trimWhitespace(String text) {
-    // Your code here
+    if (text == null || text.isEmpty()) return "";
+    return text.trim();
     
 }
 
 // Exercise 6: String Building and Joining
 // Join two strings together (handle nulls)
 public String concatenateStrings(String str1, String str2) {
-    // Your code here
+    if (str1 == null || str2 == null || str1.isEmpty() || str2.isEmpty()) return "";
+    return str1 + " " + str2;
     
 }
 
 // Repeat a string the specified number of times
 public String repeatString(String text, int count) {
-    // Your code here
+    StringBuilder result = new StringBuilder();
+    for (int i = 0; i < count; i++) {
+        result.append(text);
+    }
+    return result.toString();
     
 }
 
 // Join array of strings with a separator
 public String joinWithSeparator(String[] words, String separator) {
-    // Your code here
-    
+    if (words == null || words.length == 0) return "";
+    StringBuilder result = new StringBuider();
+    for (int i = 0; i < word.length; i++) {
+        if (word[i] != null) {
+            result.append(words[i]);
+        }
+        if (i < words.length -1) {
+            result.append(separator);
+        }
+    }
+    return result.toString();
 }
 
 // Exercise 7: String Validation and Analysis
 // Return true if email contains "@" and "." characters
 public boolean isValidEmail(String email) {
-    // Your code here
+    boolean hasAt = email.contains("@");
+    boolean hasDot = email.contains(".");
+    boolean validEmail = hasAt && hasDot;
+    return hasAt && hasDot;
     
 }
 
 // Count number of vowels (a, e, i, o, u) in string (case insensitive)
 public int countVowels(String text) {
-    // Your code here
+    int count = 0;
+    String vowels = "aeiouAEIOU";
+    for (int i = 0; i < text.length(); i++) {
+        if (vowels.indexOf(text.charAt(i)) >= 0) {
+            count++;
+        }
+    }
+    return count;
     
 }
 
 // Return true if string reads same forwards and backwards (ignore case and spaces)
 public boolean isPalindrome(String text) {
-    // Your code here
+    String cleaned = text.toLowerCase().replace(" ", "");
+    String reversed = new StringBuilder(cleaned).reverse().toString();
+    return cleaned.equals(reversed);
     
 }
 
@@ -146,7 +175,7 @@ System.out.println("\nTesting String Extraction:");
 System.out.println("First char of 'Java': " + getFirstCharacter("Java"));    // Should print 'J'
 System.out.println("Last char of 'Java': " + getLastCharacter("Java"));      // Should print 'a'
 System.out.println("Substring of 'Hello' (1,4): " + getSubstring("Hello", 1, 4)); // Should print "ell"
-/*
+
 System.out.println("\nTesting String Modification:");
 System.out.println("'hello' uppercase: " + makeUpperCase("hello"));          // Should print "HELLO"
 System.out.println("'WORLD' lowercase: " + makeLowerCase("WORLD"));          // Should print "world"
@@ -164,4 +193,4 @@ System.out.println("'invalid' is valid email: " + isValidEmail("invalid"));     
 System.out.println("Vowels in 'Hello': " + countVowels("Hello"));            // Should print 2
 System.out.println("'racecar' is palindrome: " + isPalindrome("racecar"));   // Should print true
 System.out.println("'hello' is palindrome: " + isPalindrome("hello"));       // Should print false
-*/
+
