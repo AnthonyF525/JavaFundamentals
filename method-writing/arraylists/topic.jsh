@@ -6,70 +6,71 @@ import java.util.Collections;
 // Exercise 1: ArrayList Basics
 // Create and return a new ArrayList of Strings
 public ArrayList<String> createStringList() {
-    // Your code here
-    
+    return new ArrayList<>();
 }
 
 // Return size of ArrayList (handle null)
 public int getListSize(ArrayList<String> list) {
-    // Your code here
-    
+    if (list == null) return 0;
+    return list.size();
 }
 
 // Exercise 2: Adding Elements
 // Add item to the end of the list
 public void addToEnd(ArrayList<String> list, String item) {
-    // Your code here
+    list.add(item);
     
 }
 
 // Add item to the beginning of the list
 public void addToBeginning(ArrayList<String> list, String item) {
-    // Your code here
+    list.add(0, item);
     
 }
 
 // Add item at specific position
 public void addAtPosition(ArrayList<String> list, int index, String item) {
-    // Your code here
+    list.add(index, item);
     
 }
 
 // Exercise 3: Accessing Elements
 // Return first item (null if empty)
 public String getFirstItem(ArrayList<String> list) {
-    // Your code here
-    
+    if (list == null || list.isEmpty()) return null;
+    return list.get(0); 
 }
 
 // Return last item (null if empty)
 public String getLastItem(ArrayList<String> list) {
-    // Your code here
-    
+    if (list == null || list.isEmpty()) return null;
+    return list.get(list.size(0) - 1); 
 }
 
 // Return item at specific index (null if out of bounds)
 public String getItemAt(ArrayList<String> list, int index) {
-    // Your code here
-    
+    if (index >= 0 && index < list.size()) {
+    String item = list.get(index);
+    }
+    return list.get(index);
 }
 
 // Exercise 4: Searching and Contains
 // Return true if list contains the item
 public boolean containsItem(ArrayList<String> list, String item) {
-    // Your code here
+    return list.contains(item);
     
 }
 
 // Return index of first occurrence (-1 if not found)
 public int findPosition(ArrayList<String> list, String item) {
-    // Your code here
-    
+    if (list == null) return -1;
+    list.indexOf(item);
 }
 
 // Count how many times item appears in list
 public int countOccurrences(ArrayList<String> list, String item) {
-    // Your code here
+    list.lastIndexOf(item);
     
 }
 
@@ -137,7 +138,7 @@ public String[] convertToArray(ArrayList<String> list) {
 }
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing ArrayList Basics:");
 ArrayList<String> list = createStringList();
 System.out.println("Empty list size: " + getListSize(list));        // Should print 0
@@ -153,7 +154,7 @@ System.out.println("\nTesting Accessing Elements:");
 System.out.println("First item: " + getFirstItem(list));            // Should print "Cherry"
 System.out.println("Last item: " + getLastItem(list));              // Should print "Banana"
 System.out.println("Item at index 1: " + getItemAt(list, 1));       // Should print "Apple"
-
+/*
 System.out.println("\nTesting Searching:");
 System.out.println("Contains 'Apple': " + containsItem(list, "Apple"));     // Should print true
 System.out.println("Contains 'Orange': " + containsItem(list, "Orange"));   // Should print false
