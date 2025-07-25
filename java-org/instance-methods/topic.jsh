@@ -288,7 +288,7 @@ class BankAccount {
     public BankAccount(String accountNumber) {
         this.accountNumber = accountNumber;
         this.balance = 0.0;
-        this.transactionHistory = ArrayList<>();
+        this.transactionHistory = new ArrayList<>();
     }
     
     public boolean deposit(double amount) {
@@ -302,49 +302,50 @@ class BankAccount {
     
     public boolean withdraw(double amount) {
         if (amount > 0 && balance >= amount) {
-            transactionHistory.add(String.format("Withdrawal Failed $%.2f", amount));
-            balance -= amount;  // Modify instance field
+            balance -= amount;
+            transactionHistory.add(String.format("Withdrawal $%.2f", amount));
+            return true;
         }
+        transactionHistory.add(String.format("Withdrawal Failed $%.2f", amount));
         return false;
+        
     }
     
     public boolean transfer(BankAccount toAccount, double amount) {
-        // TODO: Transfer money to another account
-        // Should withdraw from this account and deposit to other account
-        // Add transaction to history for both accounts
-        // Return true if successful
-        return false;
+        if (amount > 0 && balance >= amount) {
+            balance -= amount; 
+            transactionHistory.add(String.format("Transferred $%.2f to %s", amount, toAccount.accountNumber));
+            toAccount.balance += amount;
+            toAccount.transactionHistory.add(String.format("Received $%.2f from %s", amount, this.accountNumber));
+            return true;
+        } else {
+            transactionHistory.add(String.format("Transfer Failed $%.2f to %s", amount, toAccount.accountNumber));
+            return false;
+        }
     }
     
     public double getBalance() {
-        // TODO: Return current balance
-        return 0.0;
+        return balance;
     }
     
     public String getAccountNumber() {
-        // TODO: Return account number
-        return "";
+        return accountNumber;
     }
     
     public ArrayList<String> getTransactionHistory() {
-        // TODO: Return copy of transaction history
-        return new ArrayList<>();
+        return transactionHistory;
     }
     
     public int getTransactionCount() {
-        // TODO: Return number of transactions
-        return 0;
+        return transactionHistory.size();
     }
     
     public boolean hasInsufficientFunds(double amount) {
-        // TODO: Check if withdrawal would overdraft
-        return false;
+        return balance < amount;
     }
     
     public double calculateInterest(double rate) {
-        // TODO: Return interest amount for given rate
-        // Interest = balance * rate
-        return 0.0;
+        return balance * rate;
     }
 }
 
@@ -354,7 +355,8 @@ class StudentGradeBook {
     ArrayList<Double> grades;
     
     public StudentGradeBook(String name) {
-        // TODO: Set student name and initialize empty grades list
+        this.String = StudentName;
+        grades = new ArrayList<>();
     }
     
     public boolean addGrade(double grade) {
