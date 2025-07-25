@@ -70,70 +70,92 @@ public int findPosition(ArrayList<String> list, String item) {
 
 // Count how many times item appears in list
 public int countOccurrences(ArrayList<String> list, String item) {
-    list.lastIndexOf(item);
-    
+    if (list == null) return 0;
+    int count = 0;
+    for (String s : list) {
+        if (s != null && s.equals(item)) {
+            count++;
+        }
+    } 
+    return count;
 }
 
 // Exercise 5: Removing Elements
 // Remove and return first item (null if empty)
 public String removeFirstItem(ArrayList<String> list) {
-    // Your code here
+    if (list == null || list.isEmpty()) return null;
+    return list.remove(0);
     
 }
 
 // Remove and return last item (null if empty)
 public String removeLastItem(ArrayList<String> list) {
-    // Your code here
+    if (list == null || list.isEmpty()) return null;
+    return list.remove(list.size() - 1);
     
 }
 
 // Remove item at specific index (null if out of bounds)
 public String removeAtPosition(ArrayList<String> list, int index) {
-    // Your code here
+    if (list == null || list.isEmpty() || index < 0 || index >= list.size()) return null;
+    return list.remove(index);
     
 }
 
 // Remove all occurrences of an item
 public void removeAllOccurrences(ArrayList<String> list, String item) {
-    // Your code here
+    if (list == null) return;
+    list.removeIf(s -> s != null && s.equals(item));
     
 }
 
 // Exercise 6: List Operations
 // Remove all items from list
 public void clearList(ArrayList<String> list) {
-    // Your code here
-    
+    list.clear(); 
 }
 
 // Create a copy of the list
 public ArrayList<String> copyList(ArrayList<String> original) {
-    // Your code here
+    ArrayList<String> copy = new ArrayList<>(original);
+    return copy;
     
 }
 
 // Combine two lists into one new list
 public ArrayList<String> mergeLists(ArrayList<String> list1, ArrayList<String> list2) {
-    // Your code here
-    
+    ArrayList<String> merged = new ArrayList<>();
+    if (list1 != null) merged.addAll(list1);
+    if (list2 != null) merged.addAll(list2);
+    return merged;
 }
+    
+
 
 // Exercise 7: List Analysis
 // Find and return the longest string in the list
 public String findLongestString(ArrayList<String> list) {
-    // Your code here
+    if (list.isEmpty()) return null;
     
+    String longest = list.get(0);
+    for (String item : list) {
+        if (item.length() > longest.length()) {
+            longest = item;
+        }
+    }
+    return longest;
 }
 
 // Sort the list alphabetically (modifies the original list)
 public void sortList(ArrayList<String> list) {
-    // Your code here
+    if (list == null) return; // Optional: handle null lists safely
+    Collections.sort(list);
     
 }
 
 // Convert ArrayList to String array
 public String[] convertToArray(ArrayList<String> list) {
-    // Your code here
+    return list.toArray(new String[0]);
     
 }
 
@@ -154,7 +176,7 @@ System.out.println("\nTesting Accessing Elements:");
 System.out.println("First item: " + getFirstItem(list));            // Should print "Cherry"
 System.out.println("Last item: " + getLastItem(list));              // Should print "Banana"
 System.out.println("Item at index 1: " + getItemAt(list, 1));       // Should print "Apple"
-/*
+
 System.out.println("\nTesting Searching:");
 System.out.println("Contains 'Apple': " + containsItem(list, "Apple"));     // Should print true
 System.out.println("Contains 'Orange': " + containsItem(list, "Orange"));   // Should print false
@@ -191,4 +213,4 @@ for (int i = 0; i < array.length; i++) {
     if (i < array.length - 1) System.out.print(", ");
 }
 System.out.println("]");
-*/
+
