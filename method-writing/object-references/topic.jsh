@@ -5,77 +5,80 @@ import java.util.ArrayList;
 // Exercise 1: Reference Basics
 // Create and return array of 3 Strings
 public String[] createStringArray() {
-    // Your code here
+    return new String[] {"One", "Two", "Three"};
     
 }
 
 // Check if two String references point to same object (using ==)
 public boolean areReferencesEqual(String str1, String str2) {
-    // Your code here
-    
+    return str1 == str2;
 }
 
 // Check if two String references have same content (using equals)
 public boolean areContentsEqual(String str1, String str2) {
-    // Your code here
-    
+    if (str1 == null && str2 == null) return true;
+    if (str1 == null || str2 == null) return false;
+    return str1.equals(str2);  
 }
 
 // Exercise 2: Null Handling
 // Return true if reference is null
 public boolean isNullReference(Object obj) {
-    // Your code here
-    
+    if (obj != null) return false;
+    return true;
 }
+    
+
 
 // Convert object to string, return "null" if object is null
 public String safeToString(Object obj) {
-    // Your code here
-    
+    return (obj == null) ? "null" : obj.toString();
 }
 
 // Return length of string, or 0 if null
 public int safeLength(String str) {
-    // Your code here
-    
+    if (str == null) return 0;
+    return str.length();
 }
 
 // Exercise 3: Array References
 // Copy the reference (not content) of an array
 public int[] copyArrayReference(int[] original) {
-    // Your code here
+   return original; 
     
 }
 
 // Create new array with same content
 public int[] copyArrayContent(int[] original) {
-    // Your code here
-    
+    int[] contentCopy = new int[original.length];
+    for (int i = 0; i < original.length; i++) {
+        contentCopy[i] = original[i];  
+    }   
+    return contentCopy;
 }
 
 // Change value in array at specified index
 public void modifyArray(int[] array, int index, int newValue) {
-    // Your code here
-    
+    array[index] = newValue;
 }
 
 // Exercise 4: Object State Changes
 // Create StringBuilder with initial text
 public StringBuilder createStringBuilder(String initial) {
-    // Your code here
+    return new StringBuilder(initial);
     
 }
 
 // Add text to StringBuilder
 public void appendToBuilder(StringBuilder sb, String text) {
-    // Your code here
+    if (sb != null && text != null) {
+    sb.append(text);
     
 }
 
 // Get current content as String
 public String getBuilderContent(StringBuilder sb) {
-    // Your code here
-    
+    return sb.toString();
 }
 
 // Exercise 5: Reference Comparison
@@ -138,7 +141,7 @@ public ArrayList<String> getListReference(ArrayList<String> list) {
 }
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing Reference Basics:");
 String[] array = createStringArray();
 System.out.println("Array created with length: " + array.length);
@@ -177,7 +180,7 @@ StringBuilder sb = createStringBuilder("Hello");
 System.out.println("Initial content: " + getBuilderContent(sb));
 appendToBuilder(sb, " World");
 System.out.println("After append: " + getBuilderContent(sb));
-
+/*
 System.out.println("\nTesting Reference Comparison:");
 String[] strings = {"Apple", null, "Banana", null, "Cherry"};
 System.out.println("Found string: " + findStringInArray(strings, "Banana"));
