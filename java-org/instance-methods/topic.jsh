@@ -7,32 +7,35 @@ class Calculator {
     double result;
     
     public Calculator() {
-        // TODO: Initialize result to 0.0
+        result = 0.0;
     }
     
     public void add(double value) {
-        // TODO: Add value to result
+        result += value;
     }
     
     public void subtract(double value) {
-        // TODO: Subtract value from result
+        result -= value;
     }
     
     public void multiply(double value) {
-        // TODO: Multiply result by value
+        result *= value;
     }
     
     public void divide(double value) {
-        // TODO: Divide result by value (check for division by zero)
+        if (value == 0) {
+            System.out.println("Can't divide by 0");
+            return;
+        }
+        result /= value;
     }
     
     public double getResult() {
-        // TODO: Return the current result
-        return 0.0;
+        return result;
     }
     
     public void clear() {
-        // TODO: Reset result to 0.0
+        result = 0.0;
     }
 }
 
@@ -41,47 +44,43 @@ class TextProcessor {
     String text;
     
     public TextProcessor(String initialText) {
-        // TODO: Set the text field
+        this.text = initialText;
     }
     
     public void setText(String newText) {
-        // TODO: Update the text
+        text = newText;
     }
     
     public String getText() {
-        // TODO: Return the current text
-        return "";
+        return text;
     }
     
     public int getLength() {
-        // TODO: Return length of text
-        return 0;
+        return text.length();
     }
     
     public String toUpperCase() {
-        // TODO: Return text in uppercase (don't modify original)
-        return "";
+        return text.toUpperCase();
     }
     
     public String toLowerCase() {
-        // TODO: Return text in lowercase (don't modify original)
-        return "";
+        return text.toLowerCase();
     }
     
     public String reverse() {
-        // TODO: Return reversed text
-        return "";
+        return new StringBuilder(text).reverse().toString();
     }
     
     public boolean contains(String substring) {
-        // TODO: Check if text contains substring
+        if (text.contains(substring)) {
+        return true;
+        }
         return false;
     }
     
     public int getWordCount() {
-        // TODO: Return number of words in text
-        // Hint: Split by spaces and count non-empty parts
-        return 0;
+        if (text == null || text.trim().isEmpty()) return 0;
+        return text.trim().split("\\s+").length;
     }
 }
 
@@ -91,42 +90,45 @@ class Counter {
     int step;
     
     public Counter(int initialCount, int stepValue) {
-        // TODO: Initialize count and step
+        this.count = initialCount;
+        this.step = stepValue;
     }
     
     public void increment() {
-        // TODO: Increase count by step
+        count += step;
     }
     
     public void decrement() {
-        // TODO: Decrease count by step
+        count -= step;
     }
     
     public void reset() {
-        // TODO: Set count back to 0
+        count = 0; 
     }
     
     public int getCount() {
-        // TODO: Return current count
-        return 0;
+        return count;
     }
     
     public void setStep(int newStep) {
-        // TODO: Change the step value
+        step = newStep;
     }
     
     public int getStep() {
-        // TODO: Return current step value
-        return 0;
+        return step;
     }
     
     public boolean isPositive() {
-        // TODO: Return true if count > 0
+        if (count > 0) {
+            return true;
+        }
         return false;
     }
     
     public boolean isNegative() {
-        // TODO: Return true if count < 0
+        if (count < 0) {
+            return true;
+        }
         return false;
     }
 }
@@ -136,59 +138,67 @@ class Temperature {
     double celsius;
     
     public Temperature(double temp, String unit) {
-        // TODO: Convert temperature to Celsius and store
-        // unit can be "C", "F", or "K"
-        // Conversion formulas:
-        // F to C: (F - 32) * 5/9
-        // K to C: K - 273.15
+        if (unit.equalsIgnoreCase("C")) {
+            celsius = temp;
+        } else if (unit.equalsIgnoreCase("F")) {
+            celsius = (temp - 32) * 5.0 / 9.0;
+        } else if (unit.equalsIgnoreCase("K")) {
+            celsius = temp - 273.15;
+        } else {
+            celsius = 0.0;
+        }
     }
     
     public double getCelsius() {
-        // TODO: Return temperature in Celsius
-        return 0.0;
+        return celsius;
     }
     
     public double getFahrenheit() {
-        // TODO: Return temperature in Fahrenheit
-        // C to F: C * 9/5 + 32
-        return 0.0;
+        return celsius * 9.0 / 5.0 + 32.0;
     }
     
     public double getKelvin() {
-        // TODO: Return temperature in Kelvin
-        // C to K: C + 273.15
-        return 0.0;
+        return celsius + 273.15;
     }
     
     public void setCelsius(double temp) {
-        // TODO: Set temperature in Celsius
+        celsius = temp;
     }
     
     public void setFahrenheit(double temp) {
-        // TODO: Set temperature in Fahrenheit (convert to Celsius)
+        celsius = (temp - 32) * 5.0 / 9.0;
     }
     
     public void setKelvin(double temp) {
-        // TODO: Set temperature in Kelvin (convert to Celsius)
+        celsius = temp - 273.15;
     }
     
     public boolean isFreezingWater() {
-        // TODO: Return true if water would freeze (0°C or below)
+        if (celsius <= 0.0) {
+            return true;
+        }
         return false;
     }
     
     public boolean isBoilingWater() {
-        // TODO: Return true if water would boil (100°C or above)
+        if (celsius >= 100.0) {
+            return true;
+        }
         return false;
     }
     
     public String getTemperatureCategory() {
-        // TODO: Return category based on Celsius
-        // Below 0: "Cold"
-        // 0-20: "Mild"
-        // 21-35: "Hot"
-        // Above 35: "Extreme"
-        return "";
+        if (celsius <= 0.0) {
+            return "Cold";
+        } else if (celsius > 0 && celsius <= 20) {
+            return "Mild";
+        } else if (celsius > 20 && celsius < 35) {
+            return "Hot";
+        } else if (celsius >= 35) {
+            return "Extreme";
+        } else {
+            return "";
+        }   
     }
 }
 
@@ -198,49 +208,74 @@ class ShoppingCart {
     ArrayList<Double> prices;
     
     public ShoppingCart() {
-        // TODO: Initialize empty lists
+        items = new ArrayList<>();
+        prices = new ArrayList<>();
     }
     
     public void addItem(String item, double price) {
-        // TODO: Add item and price to respective lists
+        items.add(item);
+        prices.add(price);
+        
     }
     
     public void removeItem(String item) {
-        // TODO: Remove first occurrence of item and its corresponding price
+        int index = items.indexOf(item);
+        if (index != -1) {
+            items.remove(index);
+            prices.remove(index);
+        }
     }
     
     public int getItemCount() {
-        // TODO: Return total number of items
-        return 0;
+        return items.size();
     }
     
     public double calculateTotal() {
-        // TODO: Return sum of all prices
-        return 0.0;
+        double sum =0.0;
+        for (double price : prices) {
+            sum += price;
+        }
+        return sum;
     }
     
     public double calculateAverage() {
-        // TODO: Return average price per item
-        return 0.0;
+        return prices.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
     }
     
     public String getMostExpensive() {
-        // TODO: Return name of most expensive item
-        return "";
+        if (items.isEmpty()) return "";
+        double maxPrice = prices.get(0);
+        int maxIndex = 0;
+        for (int i = 1; i < prices.size(); i++) {
+            if (prices.get(i) > maxPrice) {
+                maxPrice = prices.get(i);
+                maxIndex = i;
+            }
+        }
+        return items.get(maxIndex);
     }
     
     public String getCheapest() {
-        // TODO: Return name of cheapest item
-        return "";
+        if (items.isEmpty()) return "";
+        double minPrice = prices.get(0);
+        int minIndex = 0;
+        for (int i = 1; i < prices.size(); i++) {
+            if (prices.get(i) < minPrice) {
+                minPrice = prices.get(i);
+                minIndex = i;
+            }
+        }
+        return items.get(minIndex);
     }
     
     public boolean containsItem(String item) {
-        // TODO: Check if item exists in cart
-        return false;
+        return items.contains(item);
+        
     }
     
     public void clear() {
-        // TODO: Remove all items and prices
+       items.clear();
+       prices.clear();
     }
 }
 
@@ -251,20 +286,25 @@ class BankAccount {
     ArrayList<String> transactionHistory;
     
     public BankAccount(String accountNumber) {
-        // TODO: Initialize account number, set balance to 0, create empty history
+        this.accountNumber = accountNumber;
+        this.balance = 0.0;
+        this.transactionHistory = ArrayList<>();
     }
     
     public boolean deposit(double amount) {
-        // TODO: Add money (validate amount > 0)
-        // Add transaction to history: "Deposited $XX.XX"
-        // Return true if successful
+        if (amount > 0) {
+            balance += amount; 
+            transactionHistory.add(String.format("Deposited $%.2f", amount));
+            return true;
+        }
         return false;
     }
     
     public boolean withdraw(double amount) {
-        // TODO: Remove money if sufficient funds (amount > 0 and balance >= amount)
-        // Add transaction to history: "Withdrew $XX.XX" or "Failed withdrawal $XX.XX"
-        // Return true if successful
+        if (amount > 0 && balance >= amount) {
+            transactionHistory.add(String.format("Withdrawal Failed $%.2f", amount));
+            balance -= amount;  // Modify instance field
+        }
         return false;
     }
     
