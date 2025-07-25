@@ -355,61 +355,102 @@ class StudentGradeBook {
     ArrayList<Double> grades;
     
     public StudentGradeBook(String name) {
-        this.String = StudentName;
+        this.studentName = name;
         grades = new ArrayList<>();
     }
     
     public boolean addGrade(double grade) {
         // TODO: Add grade (validate 0-100 range)
         // Return true if valid and added
+        if (grade >= 0 && grade <= 100) {
+            grades.add(grade);
+            return true;
+        }
         return false;
     }
     
     public boolean removeLowestGrade() {
-        // TODO: Remove the lowest grade
-        // Return true if grade was removed
-        return false;
+        if (grades.isEmpty()) return false;
+    double min = grades.get(0);
+    int minIndex = 0;
+    for (int i = 1; i < grades.size(); i++) {
+        if (grades.get(i) < min) {
+            min = grades.get(i);
+            minIndex = i;
+        }
+    }
+    grades.remove(minIndex);
+    return true;
     }
     
     public int getGradeCount() {
-        // TODO: Return number of grades
-        return 0;
+        return grades.size();
     }
     
     public double calculateAverage() {
-        // TODO: Return average of all grades
-        return 0.0;
+        if (grades.isEmpty()) return 0.0;
+        double sum = 0.0;
+        for (double grade : grades) {
+            sum += grade;
+        }
+        return sum / grades.size();
     }
+
     
     public double getHighestGrade() {
-        // TODO: Return highest grade
-        return 0.0;
+        if (grades.isEmpty()) return 0.0;
+        double max = grades.get(0);
+        for (double grade : grades) {
+            if (grade > max) {
+                max = grade;
+            }
+        }
+        return max;
     }
     
     public double getLowestGrade() {
-        // TODO: Return lowest grade
-        return 0.0;
+        if (grades.isEmpty()) return 0.0;
+        double min = grades.get(0);
+        for (double grade : grades) {
+            if (grade < min) {
+                min = grade;
+            }
+        }
+        return min;
     }
     
     public String getLetterGrade() {
-        // TODO: Return letter grade based on average
-        // A: 90-100, B: 80-89, C: 70-79, D: 60-69, F: below 60
-        return "";
+        double avg = calculateAverage();
+        if (avg >= 90 && avg <= 100) {
+            return "A";
+        } else if (avg >= 80) {
+            return "B";
+        } else if (avg >= 70) {
+            return "C"; 
+        } else if (avg >= 60) {
+            return "D";
+        } else {
+            return "F";
+        }
     }
     
     public boolean isPassingGrade() {
-        // TODO: Return true if average >= 60
-        return false;
+        return calculateAverage() >= 60.0;
     }
     
     public String getGradesSummary() {
-        // TODO: Return string with key statistics
-        // Format: "Student: [name], Grades: [count], Average: [avg], Letter: [letter]"
-        return "";
+        int count = getGradeCount();
+        double avg = calculateAverage();
+        String letter = getLetterGrade();
+        return String.format("Student: %s, Grades: %d, Average: %.2f, Letter: %s.", studentName, count, avg, letter);
     }
     
     public boolean hasGradeAbove(double threshold) {
-        // TODO: Check if any grade exceeds threshold
+        for (double grade : grades) {
+            if (grade > threshold) {
+                return true; 
+            }
+        }
         return false;
     }
 }
