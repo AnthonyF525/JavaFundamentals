@@ -10,7 +10,11 @@ import java.util.Arrays;
 class DataValidator {
     
     public String validateEmail(String email) {
-        return email != null && email.contains("@") && email.contains(".");
+        if (email != null && email.contains("@") && email.contains(".")) {
+            return "Valid";
+        } else {
+            return "Invalid";
+        }
     }
     
     public boolean validatePassword(String password, int minLength, boolean requireSpecial) {
@@ -48,11 +52,11 @@ class DataValidator {
         }
         String formatted = String.format("%s-%s-%s-%s",
             countryCode,
-            digits.substring(0, 3)
-            digits.substring(3, 6)
+            digits.substring(0, 3),
+            digits.substring(3, 6),
             digits.substring(6)
         );
-        return formatted
+        return formatted;
     }
     
     public boolean[] validateCreditCard(String cardNumber, String expiryDate) {
@@ -66,7 +70,7 @@ class DataValidator {
             String[] parts = expiryDate.split("/");
             int month = Integer.parseInt(parts[0]);
             int year = Integer.parseInt(parts[1]) + 2000;
-            if (month >= 1 && month <= 12 && year >== 2025) {
+            if (month >= 1 && month <= 12 && year >= 2025) {
                 result[1] = true;
             }
         }
@@ -74,7 +78,7 @@ class DataValidator {
     }
     
     public String getValidationSummary(String email, String password, int age) {
-        String emailResult = validateEmail(email) ? "Valid" : "Invalid";
+        String emailResult = validateEmail(email);
         String passwordResult = validatePassword(password, 8, true) ? "Valid" : "Invalid";
         int ageResult = validateAge(age, 18, 65);
         String ageStr = (ageResult == 0) ? "Valid" : (ageResult == -1 ? "Too Young" : "Too Old");
@@ -86,14 +90,35 @@ class DataValidator {
 class MathEngine {
     
     public double calculate(double a, double b, String operation) {
-        // TODO: Perform operation (+, -, *, /, %)
-        // Return 0.0 for invalid operation or division by zero
-        return 0.0;
+        switch (operation) {
+            case "+":
+                return a + b;
+            case "-":
+                return a - b;
+            case "*":
+                return a * b;
+            case "/":
+                if (b == 0.0) return 0.0;
+                return a / b;
+            case "%":
+                if (b == 0.0) return 0.0;
+                return a % b;
+            default:
+                return 0.0;
+        }
     }
     
     public double[] findRange(double[] numbers) {
-        // TODO: Return [min, max] or [0.0, 0.0] if empty array
-        return new double[2];
+        if (numbers == null || numbers.length == 0) {
+            return new double[]{0.0, 0.0};
+        }
+        double min = numbers[0];
+        double max = numbers[0];
+        for (int i = 1; i < numbers.length; i++) {
+            if (numbers[i] < min) min = numbers[i];
+            if (numbers[i] > max) max = numbers[i];
+        }
+        return new double[] {min,max};
     }
     
     public String statisticalSummary(double[] values) {
