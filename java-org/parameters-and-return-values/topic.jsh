@@ -10,38 +10,75 @@ import java.util.Arrays;
 class DataValidator {
     
     public String validateEmail(String email) {
-        // TODO: Return "Valid" if email contains @ and ., otherwise return specific error message
-        // Check for null, empty, missing @, missing .
-        return "";
+        return email != null && email.contains("@") && email.contains(".");
     }
     
     public boolean validatePassword(String password, int minLength, boolean requireSpecial) {
-        // TODO: Return true if password meets criteria
-        // Check length and special characters (!@#$%^&*) if required
-        return false;
+        if (password == null || password.length() < minLength) {
+            return false;
+        }
+        if (requireSpecial) {
+            String specialChars = "!@#$%^&*";
+            boolean hasSpecial = false;
+            for (char c : password.toCharArray()) {
+                if (specialChars.indexOf(c) != -1) {
+                    hasSpecial = true;
+                    break;
+                }
+            }
+            if (!hasSpecial) return false;
+        }
+        return true;
     }
     
     public int validateAge(int age, int minAge, int maxAge) {
-        // TODO: Return -1 if too young, 0 if valid, 1 if too old
-        return 0;
+        if (age < minAge) {
+            return -1;
+        } else if (age > maxAge) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
     
     public String validatePhoneNumber(String phone, String countryCode) {
-        // TODO: Return formatted number like "+1-555-123-4567" or "INVALID"
-        // Simple validation: remove non-digits, check length
-        return "";
+        String digits = phone.replaceAll("\\D", "");
+        if (digits.length() != 10) {
+            return "INVALID";
+        }
+        String formatted = String.format("%s-%s-%s-%s",
+            countryCode,
+            digits.substring(0, 3)
+            digits.substring(3, 6)
+            digits.substring(6)
+        );
+        return formatted
     }
     
     public boolean[] validateCreditCard(String cardNumber, String expiryDate) {
-        // TODO: Return array [isValidNumber, isNotExpired]
-        // Simple check: 16 digits for number, MM/YY format for expiry (assume current year 2025)
-        return new boolean[2];
+        boolean[] result = new boolean[2];
+
+        String digits = cardNumber.replaceAll("\\D","");
+        result[0] = digits.length() == 16;
+
+        result[1] = false;
+        if (expiryDate != null && expiryDate.matches("\\d{2}/\\d{2}")) {
+            String[] parts = expiryDate.split("/");
+            int month = Integer.parseInt(parts[0]);
+            int year = Integer.parseInt(parts[1]) + 2000;
+            if (month >= 1 && month <= 12 && year >== 2025) {
+                result[1] = true;
+            }
+        }
+        return result;
     }
     
     public String getValidationSummary(String email, String password, int age) {
-        // TODO: Return summary string of all validations
-        // Format: "Email: [result], Password: [result], Age: [result]"
-        return "";
+        String emailResult = validateEmail(email) ? "Valid" : "Invalid";
+        String passwordResult = validatePassword(password, 8, true) ? "Valid" : "Invalid";
+        int ageResult = validateAge(age, 18, 65);
+        String ageStr = (ageResult == 0) ? "Valid" : (ageResult == -1 ? "Too Young" : "Too Old");
+        return String.format("Email: %s, Password: %s, Age: %s", emailResult, passwordResult, ageStr);
     }
 }
 
